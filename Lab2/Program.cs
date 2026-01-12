@@ -1,8 +1,8 @@
 ﻿
 #region Øvelse 1
 
-    int value1 = 10;
-    int value2 = 20;
+    int value1 = 11;
+    int value2 = 23;
 
     int addition = value1 + value2;
     int subtraction = value2 - value1;
