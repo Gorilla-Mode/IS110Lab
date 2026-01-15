@@ -1,5 +1,6 @@
 ﻿//https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives#defining-regions
 //Region har ingen påvirkning på koden, men gjør det mulig å kollapse/ekspandere deler av koden i IDEer som støtter det. (Rider GOAT)
+
 #region Øvelse 1
 
     /*
@@ -28,7 +29,6 @@
                       $"{multiplication}\nResultat av divisjon: {division}\n"); 
 
 #endregion
-
 #region Øvelse 2
 
     /*
@@ -38,11 +38,11 @@
     
     int weekday = 2;
     
+    //Pattern matching syntaks, mulig å sjekke intervaller med switches og slipper å hente verdien til weekday flere ganger
+    //noe som gjør koden mer lesbar. Her kunne en også brukt if - if else statements.
+    //https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching
     switch (weekday) 
     {
-        //Pattern matching syntaks, mulig å sjekke intervaller med switches og slipper å hente verdien til weekday flere ganger
-        //noe som gjør koden mer lesbar. Teknisk sett er dette funksjonell programmering.
-        //https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching
          case >= 1 and <= 5:
             Console.WriteLine("Ukedag\n"); 
             break;
@@ -55,7 +55,6 @@
     }
 
 #endregion
-
 #region Øving 3
 
     /*
@@ -74,9 +73,8 @@
     {
         Console.WriteLine($"{Math.Max(x, y)} er størst\n"); // Math.Max returnerer det største av to tall. https://learn.microsoft.com/en-us/dotnet/api/system.math.max
     }
-
+    
 #endregion
-
 #region Øving 4
     
     /*
