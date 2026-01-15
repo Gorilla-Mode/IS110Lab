@@ -62,8 +62,8 @@
      * høyere verdi og skriver ut det tallet med verdi som er høyere enn det andre. Ellers skriv ut at tallene er like.
      */
     
-    int x = 10;
-    int y = 10;
+    int x = -11;
+    int y = -10;
 
     if (x == y)
     {
@@ -72,6 +72,23 @@
     else
     {
         Console.WriteLine($"{Math.Max(x, y)} er størst\n"); // Math.Max returnerer det største av to tall. https://learn.microsoft.com/en-us/dotnet/api/system.math.max
+    }
+    
+    //Eksempel på en funksjon som returnerer det største verdi av to doubles. Dersom du ikke vil bruke Math.Max og heller skrive din egen funksjon.
+    double? MaxValue (double val1, double val2) 
+    {
+        double tolerance = 0.0001; //Definer en liten margin for sammenligning av floats.
+        
+        //Guard clause, bruk tidlige returns når mulig for å redusere nesting. https://www.youtube.com/watch?v=CFRhGnuXG-4
+        //Sjekker om tallene er innenfor en liten margin for å unngå problemer med floating point presisjon. https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types
+        //Abs returnerer absoluttverdien til et tall, gjøre dette slik at negative verdier kan sammenlignes riktig.
+        //Uten vil tolerance trigges dersom resultatet av val1 - val2 er negativt, og returnere null. 
+        if (Math.Abs(val1 - val2) < tolerance) 
+        {
+            return null; //Null returners siden tallene er like (nesten).
+        }
+        
+        return (val1 > val2) ? val1 : val2; //Ternary operator for enkel if-else statement. https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator
     }
     
 #endregion
@@ -114,7 +131,6 @@
             //Ved å bruke ToString på en DateOnly/DateTime kan vi formatere datoen slik vi ønsker. https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
             Console.WriteLine($"ID: {Id}\nNavn: {Name}\nAdresse: {Address}\nFødselsdato: {Birthdate.ToString("dd/MMMM/yyyy")}\n");
         }
-        
     }
 
 #endregion
