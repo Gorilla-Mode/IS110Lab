@@ -7,6 +7,8 @@ fast kan dere spørre en LA om hjelp.
 Koden innholder ganske mye kommentarter og forklaringer med linker, osv, men dere trenger nok ikke å ha like mye når dere
 skriver egen kode.
 
+Sjekk også Ask sine løsningsforslag her: https://github.com/asklootz/IS110_26
+
 ### 1. Klon repoet
 ```powershell
 git clone https://github.com/Gorilla-Mode/IS110Lab.git
