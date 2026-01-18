@@ -15,7 +15,6 @@ git clone https://github.com/Gorilla-Mode/IS110Lab.git
 
 ### 2. Løsningsforslag status
 
-- [x] Øving 1
 - [x] Øving 2
 - [ ] Øving 3
 - [ ] Øving 4
