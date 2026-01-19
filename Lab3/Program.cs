@@ -1,19 +1,32 @@
 ﻿using System.Numerics;
 using Lab3;
 
-bool task1Run = true;
-var persons = new Vector<Person>();
+var persons = new List<Person>();
 
-while (task1Run)
+while (true)
 {
-    Console.WriteLine("Input person ID (or type 'exit' to quit): ");
-    string? input = Console.ReadLine();
-    if (input != null || input?.ToLower() != "exit")
+    Console.WriteLine("Input person name (or type 'exit' to quit): ");
+    string? name = Console.ReadLine();
+    if (name == null || name.ToLower() == "exit")
     {
-        
+        break;
+    }
+    
+    Console.WriteLine("Input person ID (or type 'exit' to quit): ");
+    string? id = Console.ReadLine();
+    if (id == null || name?.ToLower() == "exit")
+    {
+        break;
+    }
+    int.TryParse(id, out int personId);
+
+    if (name != null)
+    {
+        var person = new Person(personId, name);
+        persons.Add(person);
     }
     else
     {
-        task1Run = false; 
+        Console.WriteLine("Invalid name input. Please try again.");
     }
 }

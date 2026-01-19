@@ -14,6 +14,12 @@ public class Person
         this.id = 0;
         this.navn = string.Empty;
     }
+    
+    public Person(int personId, string personNavn)
+    {
+        this.id = personId;
+        this.navn = personNavn;
+    }
 
     // deklarer Set og Get metoder
     public void SetId(int personId)
