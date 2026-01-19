@@ -4,7 +4,7 @@
 
     while (true)
     {
-        Console.Write("Input person name (or type 'exit' to quit): ");
+        Console.Write("\nInput person name (or type 'exit' to quit): ");
         string? name = Console.ReadLine();
         if (name == null || name.ToLower() == "exit")
         {
@@ -13,7 +13,7 @@
         
         Console.Write("Input person ID (or type 'exit' to quit): ");
         string? id = Console.ReadLine();
-        if (id == null || name.ToLower() == "exit")
+        if (id == null || id.ToLower() == "exit")
         {
             break;
         }
@@ -22,6 +22,14 @@
         var person = new Person(personId, name);
         persons.Add(person);
     }
+    Console.Write("\n");
+
+    foreach (var person in persons)
+    {
+        person.VisInformasjon();
+        Console.Write("\n");
+    }
+    
 #endregion
 #region Øvelse 2
 
@@ -70,9 +78,19 @@
 
     Console.WriteLine(number % 2 == 0 ? $"{number} is even.\n" : $"{number} is odd.\n");
 
-    #endregion
+#endregion
 #region Øvelse 4
 
+var students = new List<Student>
+{
+    new Student("1", "Sarumann", 20m, 18.3m, 2.32m),
+    new Student("2", "Gandalf", 20m, 19.9m, 20m),
+    new Student("3", "Aragorn", 15m, 14.5m, 13.2m)
+};
 
+foreach (var student in students)
+{
+    Console.WriteLine($"Student: {student.Name}, Aggregate: {student.GetAggregate():F2} points, Percentage: {student.GetPercentage():F2}%");
+}
 
 #endregion
