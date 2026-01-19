@@ -65,9 +65,12 @@
 #endregion
 #region Øvelse 3
 
+    Console.Write("Enter an integer: ");
+    int.TryParse(Console.ReadLine(), out var number);
 
+    Console.WriteLine(number % 2 == 0 ? $"{number} is even.\n" : $"{number} is odd.\n");
 
-#endregion
+    #endregion
 #region Øvelse 4
 
 
