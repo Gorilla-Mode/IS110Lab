@@ -1,5 +1,6 @@
 ﻿namespace Lab3;
 
+//fra https://github.com/espenlimi/IS110_2026/blob/main/Forelesning2/Person.cs
 public class Person
 {
     // Deklarer instansvariabler
