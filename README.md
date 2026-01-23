@@ -1,4 +1,4 @@
-﻿# IS-110 lab øvinger
+# IS-110 lab øvinger
 
 Repo for samling av løsningsforslag til lab øvelsene i IS-110V26. Løsningsforslag til øving deles mellom torsdag og fredag.
 Det er slik at dere skal selv bruke tid på å prøve å løse oppgavene, hvis dere står fast kan dere spørre en LA om hjelp.
@@ -16,7 +16,7 @@ git clone https://github.com/Gorilla-Mode/IS110Lab.git
 ### 2. Løsningsforslag status
 
 - [x] Øving 2
-- [ ] Øving 3
+- [x] Øving 3
 - [ ] Øving 4
 - [ ] Øving 5
 - [ ] Øving 6
