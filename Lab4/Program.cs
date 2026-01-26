@@ -1,4 +1,5 @@
 ﻿using Lab4;
+using Lab4ExternalProj;
 
 #region Task 1
     bool task1 = true;
@@ -18,14 +19,23 @@
                 Console.WriteLine("Enter book author:");
                 string author = Console.ReadLine() ?? string.Empty;
                 Console.WriteLine("Enter publication year:");
-                uint.TryParse(Console.ReadLine(), out uint publicationYear);
                 
-                books.Add(new Book(title, author, publicationYear));
+                bool parseSuccess = uint.TryParse(Console.ReadLine(), out uint publicationYear);
+                if (parseSuccess)
+                {
+                    books.Add(new Book(title, author, publicationYear));
+                
+                    Console.Clear();
+                    Console.WriteLine("Book added successfully!\nPress any key to continue...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                }
                 
                 Console.Clear();
-                Console.WriteLine("Book added successfully!\nPress any key to continue...\n");
+                Console.WriteLine("Invalid publication year. Book not added.\nPress any key to continue...\n");
                 Console.ReadKey();
-                Console.Clear();
+                
                 break;
             case 2:
                 Console.Clear();
@@ -131,8 +141,8 @@ void UserMenu()
             case 1:
                 Console.Clear();
                 Console.WriteLine("Enter password to display account info:");
-                string infoPassword = Console.ReadLine() ?? string.Empty;
-                selectedUser.DisplayAccountInfo(infoPassword);
+                string userPwd = Console.ReadLine() ?? string.Empty;
+                selectedUser.DisplayAccountInfo(userPwd);
             
                 Console.WriteLine("\nPress any key to continue...\n");
                 Console.ReadKey();
@@ -165,7 +175,20 @@ void UserMenu()
                 Console.Clear();
                 break;
         }
+        
     }
 }
+
+#endregion
+#region Task 3
+
+var configManager = new ConfigurationManager
+{
+    AppName = Lab4Application.AppName,
+    Version = Lab4Application.Version
+};
+
+configManager.DisplayConfiguration();
+
 
 #endregion
