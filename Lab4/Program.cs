@@ -11,11 +11,7 @@ using Lab4ExternalProj;
         bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte task1Choice);
         if (!parseSuccess)
         {
-            Console.Clear();
-            Console.WriteLine("Invalid input, please enter a number.\nPress any key to continue...\n");
-            Console.ReadKey();
-            Console.Clear();
-            
+            ConsoleUtils.DisplayMessage("Invalid input, please enter a number.");
             continue;
         }
         
@@ -23,29 +19,22 @@ using Lab4ExternalProj;
         {
             case 1:
                 Console.Clear();
-                
                 Console.WriteLine("Enter book title:");
                 string title = Console.ReadLine() ?? string.Empty;
+                
                 Console.WriteLine("Enter book author:");
                 string author = Console.ReadLine() ?? string.Empty;
+                
                 Console.WriteLine("Enter publication year:");
-                
                 parseSuccess = uint.TryParse(Console.ReadLine(), out uint publicationYear);
-                if (parseSuccess)
+                if (!parseSuccess)
                 {
-                    books.Add(new Book(title, author, publicationYear));
-                
-                    Console.Clear();
-                    Console.WriteLine("Book added successfully!\nPress any key to continue...\n");
-                    Console.ReadKey();
-                    Console.Clear();
+                    ConsoleUtils.DisplayMessage("Invalid publication year. Book not added.");
                     break;
                 }
                 
-                Console.Clear();
-                Console.WriteLine("Invalid publication year. Book not added.\nPress any key to continue...\n");
-                Console.ReadKey();
-                
+                books.Add(new Book(title, author, publicationYear));
+                ConsoleUtils.DisplayMessage("Book added successfully!");
                 break;
             case 2:
                 Console.Clear();
@@ -54,22 +43,18 @@ using Lab4ExternalProj;
                 {
                     Console.WriteLine($"\t- {books[i].GetInfo()}");
                 }
-                Console.WriteLine("\nPress any key to continue...\n");
-                Console.ReadKey();
-                Console.Clear();
+                ConsoleUtils.AwaitKeyPress();
                 break;
             case 3:
                 Console.Clear();
                 task1 = false;
                 break;
             default:
-                Console.Clear();
-                Console.WriteLine("Invalid choice, please try again.\n");
+                ConsoleUtils.DisplayMessage("Invalid choice, please try again.\n");
                 break;
         }
     }
 #endregion
-
 #region Task 2
 
     bool task2 = true; 
@@ -78,7 +63,13 @@ using Lab4ExternalProj;
     while (task2)
     {
         Console.WriteLine("Task 2 - Choices:\n[1] Create account\n[2] List users\n[3] Select user\n[4] Exit\n");
-        byte task2Choice = byte.Parse(Console.ReadLine() ?? string.Empty);
+        
+        bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte task2Choice);
+        if (!parseSuccess)
+        {
+            ConsoleUtils.DisplayMessage("Invalid input, please enter a number.");
+            continue;
+        }
 
         switch (task2Choice)
         {
@@ -91,10 +82,7 @@ using Lab4ExternalProj;
 
                 users.Add(new UserAccount(username, password));
 
-                Console.Clear();
-                Console.WriteLine("Account created successfully!\nPress any key to continue...\n");
-                Console.ReadKey();
-                Console.Clear();
+                ConsoleUtils.DisplayMessage("Account created successfully!");
                 break;
             case 2:
                 Console.Clear();
@@ -105,9 +93,7 @@ using Lab4ExternalProj;
                     Console.WriteLine($"| {user.Username,-50}| {user.CreatedAt,-50}|");  
                 }
                 
-                Console.WriteLine("\nPress any key to continue...\n");
-                Console.ReadKey();
-                Console.Clear();
+                ConsoleUtils.AwaitKeyPress();
                 break;
             case 3:
                 UserMenu();
@@ -117,8 +103,7 @@ using Lab4ExternalProj;
                 task2 = false;
                 break;
             default:
-                Console.Clear();
-                Console.WriteLine("Invalid choice, please try again.\n");
+                ConsoleUtils.DisplayMessage("Invalid choice, please try again.");
                 break;
         }
     }
@@ -132,10 +117,7 @@ using Lab4ExternalProj;
         
         if (selectedUser == null)
         {
-            Console.Clear();
-            Console.WriteLine("User not found.\nPress any key to continue...\n");
-            Console.ReadKey();
-            Console.Clear();
+            ConsoleUtils.DisplayMessage("User not found.");
             return;
         }
         
@@ -144,7 +126,13 @@ using Lab4ExternalProj;
         {
             Console.Clear();
             Console.WriteLine($"User {selectedUser.Username} selected. Select an option:\n[1] Display account info\n[2] Change password\n[3] Back to main menu\n");
-            byte userMenuChoice = byte.Parse(Console.ReadLine() ?? string.Empty);
+            
+            bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte userMenuChoice);
+            if (!parseSuccess)
+            {
+                ConsoleUtils.DisplayMessage("Invalid input, please enter a number.");
+                continue;
+            }
 
             switch (userMenuChoice)
             {
@@ -154,9 +142,7 @@ using Lab4ExternalProj;
                     string userPwd = Console.ReadLine() ?? string.Empty;
                     selectedUser.DisplayAccountInfo(userPwd);
                 
-                    Console.WriteLine("\nPress any key to continue...\n");
-                    Console.ReadKey();
-                    Console.Clear();
+                    ConsoleUtils.AwaitKeyPress();
                     break;
                 case 2:
                     Console.Clear();
@@ -169,20 +155,14 @@ using Lab4ExternalProj;
                     Console.Clear();
                     selectedUser.ChangePassword(currentPassword, newPassword);
                 
-                    Console.WriteLine("\nPress any key to continue...\n");
-                    Console.ReadKey();
-                    Console.Clear();
+                    ConsoleUtils.AwaitKeyPress();
                     break;
                 case 3:
                     Console.Clear();
                     userMenuActive = false;
                     break;
                 default:
-                    Console.Clear();
-                    Console.WriteLine("Invalid choice, please try again.\n");
-                    Console.WriteLine("Press any key to continue...\n");
-                    Console.ReadKey();
-                    Console.Clear();
+                    ConsoleUtils.DisplayMessage("Invalid choice, please try again.");
                     break;
             }
         }
@@ -199,9 +179,115 @@ using Lab4ExternalProj;
 
     configManager.DisplayConfiguration();
 
+    ConsoleUtils.AwaitKeyPress();
 #endregion
 #region Task 4
 
+bool task4 = true;
+var employees = new List<Employee>();
+    
+while (task4)
+{
+    Console.Clear();
+   
+    
+    Console.WriteLine("Task 4 - Choices:\n[1] Create Employee\n[2] List Employees\n[3] Change Employee Salary\n[4] Exit\n");
+    
+    bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte task4Choice);
+    if (!parseSuccess)
+    {
+        ConsoleUtils.DisplayMessage("Invalid input, please enter a number.");
+        continue;
+    }
 
+    switch (task4Choice)
+    {
+        case 1:
+            Console.Clear();
+            Console.WriteLine("Enter employee name:");
+            string name = Console.ReadLine() ?? string.Empty;
+            
+            Console.WriteLine("Enter employee salary:");
+            parseSuccess = double.TryParse(Console.ReadLine(), out double salary);
+            if (!parseSuccess)
+            {
+                ConsoleUtils.DisplayMessage("Invalid salary. Employee not created.");
+                break;
+            }
+            
+            Console.WriteLine("Select employee role:\n[1] Employee\n[2] Manager\n[3] Director");
+            parseSuccess = byte.TryParse(Console.ReadLine(), out byte roleChoice);
+            if (!parseSuccess)
+            {
+                ConsoleUtils.DisplayMessage("Invalid input. Enter a number.");
+                break;
+            }
+            bool enumParseSuccess = Enum.TryParse((roleChoice - 1).ToString(), out Employee.Role role);
+            if (!enumParseSuccess)
+            {
+                ConsoleUtils.DisplayMessage("Invalid role selection.");
+                break;
+            }
+            
+            employees.Add(new Employee(name, salary, role));
+            ConsoleUtils.DisplayMessage("Employee created successfully!");
+            break;
+        case 2:
+            Console.Clear();
 
+            if (employees.Count == 0)
+            {
+                ConsoleUtils.DisplayMessage("No employees found.");
+                break;
+            }
+            
+            Console.WriteLine($"Total Employees: {employees.Count}");
+            Console.WriteLine($"| {"ID",-25}| {"Name",-25}| {"Salary",-25}| {"Role",-25}|");
+            foreach (var emp in employees)
+            {
+                emp.PrintInfo();
+            }
+            
+            ConsoleUtils.AwaitKeyPress();
+            break;
+        case 3:
+            Console.Clear();
+            
+            Console.WriteLine("Enter name of the employee whose salary you want to change:");
+            string empName = Console.ReadLine() ?? string.Empty;
+            var employeeToChange = employees.Find(e => e.Name == empName);
+            if (employeeToChange == null)
+            {
+                ConsoleUtils.DisplayMessage("Employee not found.");
+                break;
+            }
+            
+            Console.WriteLine("Enter name of the authorizer (Manager or Director):");
+            string authorizerName = Console.ReadLine() ?? string.Empty;
+            var authorizer = employees.Find(e => e.Name == authorizerName);
+            if (authorizer == null)
+            {
+                ConsoleUtils.DisplayMessage("Authorizer not found.");
+                break;
+            }
+            
+            Console.WriteLine("Enter new salary:");
+            parseSuccess = double.TryParse(Console.ReadLine(), out double newSalary);
+            if (!parseSuccess)
+            {
+                ConsoleUtils.DisplayMessage("Invalid salary input.");
+                break;
+            }
+            
+            employees[(employees.IndexOf(employeeToChange))].ChangeSalary(newSalary, authorizer);
+            break;
+        case 4:
+            Console.Clear();
+            task4 = false;
+            break;
+        default:
+            ConsoleUtils.DisplayMessage("Invalid choice, please try again.");
+            break;
+    }
+}
 #endregion
