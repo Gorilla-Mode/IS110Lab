@@ -1,5 +1,5 @@
-﻿using Lab4ExternalProj;
-
+﻿// using Lab4ExternalProj;
+//
 // var configurationManager = new Lab4.ConfigurationManager
 // {
 //     AppName = Lab4Application.AppName,
@@ -8,7 +8,7 @@
 
 namespace Lab4ExternalProj
 {
-    public class Lab4Application
+    public class Lab4ExternApp
     {
         public const string AppName = "Lab4ExternalProj";
         public static string Version { get; set; } = "1.0.0";
