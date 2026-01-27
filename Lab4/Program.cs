@@ -7,7 +7,17 @@ using Lab4ExternalProj;
     while(task1)
     {
         Console.WriteLine("Task 1 - Choices:\n[1] Add book\n[2] List books\n[3] Exit\n");
-        byte task1Choice = byte.Parse(Console.ReadLine() ?? string.Empty);
+        
+        bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte task1Choice);
+        if (!parseSuccess)
+        {
+            Console.Clear();
+            Console.WriteLine("Invalid input, please enter a number.\nPress any key to continue...\n");
+            Console.ReadKey();
+            Console.Clear();
+            
+            continue;
+        }
         
         switch (task1Choice)
         {
@@ -20,7 +30,7 @@ using Lab4ExternalProj;
                 string author = Console.ReadLine() ?? string.Empty;
                 Console.WriteLine("Enter publication year:");
                 
-                bool parseSuccess = uint.TryParse(Console.ReadLine(), out uint publicationYear);
+                parseSuccess = uint.TryParse(Console.ReadLine(), out uint publicationYear);
                 if (parseSuccess)
                 {
                     books.Add(new Book(title, author, publicationYear));
@@ -175,7 +185,6 @@ void UserMenu()
                 Console.Clear();
                 break;
         }
-        
     }
 }
 

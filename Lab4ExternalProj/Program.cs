@@ -1,13 +1,21 @@
-﻿namespace Lab4ExternalProj;
+﻿using Lab4ExternalProj;
 
-public static class Lab4Application
+// var configurationManager = new Lab4.ConfigurationManager
+// {
+//     AppName = Lab4Application.AppName,
+//     Version = Lab4Application.Version
+// };
+
+namespace Lab4ExternalProj
 {
-    public const string AppName = "Lab4ExternalProj";
-    public static string Version { get; set; } = "1.0.0";
-    
-
-    public static void Main()
+    public class Lab4Application
     {
-        Console.WriteLine("This is an external project referenced by Lab4.");
+        public const string AppName = "Lab4ExternalProj";
+        public static string Version { get; set; } = "1.0.0";
+        
+        public static void Main()
+        {
+            Console.WriteLine("This is an external project referenced by Lab4.");
+        }
     }
 }
