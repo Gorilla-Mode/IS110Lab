@@ -1,5 +1,6 @@
 ﻿// using Lab4ExternalProj;
 //
+// Ukommenter, sammen med referanse i lab4.csproj-filen, for å teste tilgang til internals fra et eksternt prosjekt
 // var configurationManager = new Lab4.ConfigurationManager
 // {
 //     AppName = Lab4Application.AppName,

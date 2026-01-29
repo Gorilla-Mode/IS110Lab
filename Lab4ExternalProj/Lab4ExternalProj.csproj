@@ -7,6 +7,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+<!--    Sikrulære referanse, kommer ikke til å kompilere, men kan demonstrere internal -->
 <!--    <ItemGroup>-->
 <!--        <ProjectReference Include="..\Lab4\Lab4.csproj" />-->
 <!--    </ItemGroup>-->

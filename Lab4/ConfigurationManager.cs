@@ -4,7 +4,7 @@ namespace Lab4;
 
 internal class ConfigurationManager
 {
-    public required string AppName { get; set; }
+    public required string AppName { get; init; }
     public string? Version { get; set; }
     
     public void DisplayConfiguration()
