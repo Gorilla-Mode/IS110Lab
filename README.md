@@ -17,7 +17,7 @@ git clone https://github.com/Gorilla-Mode/IS110Lab.git
 
 - [x] Øving 2
 - [x] Øving 3
-- [ ] Øving 4
+- [x] Øving 4
 - [ ] Øving 5
 - [ ] Øving 6
 - [ ] Øving 7
