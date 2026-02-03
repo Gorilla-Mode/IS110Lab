@@ -1,7 +1,7 @@
-﻿#region Task1
-
-using System.Globalization;
+﻿using System.Globalization;
 using Lab5;
+
+#region Task1
 
 int[] array = [1, 2, 3, 4, 5, 54, 232, 1234 ,432, 12, 124, 534, 23, 45, 67, 89, 90];
     int largestVal = array[0];
@@ -182,7 +182,7 @@ while (task2)
             break;
         case 6:
             Console.Clear();
-            Console.WriteLine($"Total Price of all Products: {Queries.TotalPrice()}");
+            Console.WriteLine($"Total Price of all Products: {Queries.TotalPrice().ToString("C", CultureInfo.CreateSpecificCulture("NO"))}");
             ConsoleUtils.AwaitKeypress();
             break;
         default:
