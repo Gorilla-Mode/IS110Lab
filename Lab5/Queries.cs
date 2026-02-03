@@ -53,6 +53,11 @@ public abstract class Queries : Product
         return groupedByCategory;
     }
     
+    public static List<Product> GetAllProducts()
+    {
+        return Stock;
+    }
+    
     public static long TotalPrice()
     {
         long sum = 0;
