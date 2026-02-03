@@ -31,12 +31,12 @@ while (task2)
 {
     Console.Clear();
     Console.WriteLine("Product Management System");
-    Console.WriteLine("\t[1] Display all products\n\t" +
-                      "[2] Display price ascending\n\t" +
-                      "[3] Display products by category\n\t" +
-                      "[4] Display products by price range\n\t" +
-                      "[5] Display products grouped by category\n\t" +
-                      "[6] Display total price of all products\n\t" +
+    Console.WriteLine("[1] Display all products\n" +
+                      "[2] Display price ascending\n" +
+                      "[3] Display products by category\n" +
+                      "[4] Display products by price range\n" +
+                      "[5] Display products grouped by category\n" +
+                      "[6] Display total price of all products\n" +
                       "[0] Exit");
     
     bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte choice);
@@ -190,5 +190,113 @@ while (task2)
             break;
     }
     
+}
+#endregion
+#region task3
+
+var shoppingList = new List<string>();
+bool task3 = true;
+while (task3)
+{
+    Console.Clear();
+    Console.WriteLine("Shopping List Manager\n[1] Add Item\n[2] Remove Item\n[3] View Items\n[4] View alphabetically" +
+                      "\n[5] Search\n[0] Exit");
+    bool parseSuccess = byte.TryParse(Console.ReadLine(), out byte choice);
+    if (!parseSuccess)
+    {
+        Console.WriteLine("Invalid choice");
+        continue;
+    }
+
+    switch (choice)
+    {
+        case 0:
+            task3 = false;
+            break;
+        case 1:
+            Console.Clear();
+            Console.Write("Enter item to add: ");
+            string? itemToAdd = Console.ReadLine();
+            
+            if (string.IsNullOrWhiteSpace(itemToAdd))
+            {
+                Console.Clear();
+                Console.WriteLine("Item cannot be empty");
+                ConsoleUtils.AwaitKeypress();
+                break;
+            }
+            
+            shoppingList.Add(itemToAdd);
+            Console.WriteLine($"{itemToAdd} added to the shopping list.");
+            ConsoleUtils.AwaitKeypress();
+            break;
+        case 2:
+            Console.Clear();
+            Console.Write("Enter item to remove: ");
+            string itemToRemove = Console.ReadLine() ?? string.Empty;
+            
+            if (!shoppingList.Contains(itemToRemove))
+            {
+                Console.WriteLine($"Item {itemToRemove} does not exist.");
+                ConsoleUtils.AwaitKeypress();
+                break;
+            }
+            
+            shoppingList.Remove(itemToRemove);
+            Console.WriteLine($"{itemToRemove} removed from the shopping list.");
+            ConsoleUtils.AwaitKeypress();
+            break;
+        case 3:
+            Console.Clear();
+            
+            if (!shoppingList.Any())
+            {
+                Console.WriteLine("No items in the shopping list.");
+                ConsoleUtils.AwaitKeypress();
+                break;
+            }
+            
+            Console.WriteLine("Shopping List Items:");
+            foreach (var item in shoppingList)
+            {
+                Console.WriteLine($"- {item}");
+            }
+            ConsoleUtils.AwaitKeypress();
+            break;
+        case 4:
+            Console.Clear();
+
+            if (!shoppingList.Any())
+            {
+                Console.WriteLine("No items in the shopping list.");
+                ConsoleUtils.AwaitKeypress();
+                break;
+            }
+
+            var sortedList = shoppingList.OrderBy(item => item).ToList();
+            Console.WriteLine("Shopping List Items (Alphabetically):");
+            foreach (var item in sortedList)
+            {                Console.WriteLine($"- {item}");
+            }
+            ConsoleUtils.AwaitKeypress();
+            break;
+        case 5:
+            Console.Clear();
+            Console.Write("Enter search term:");
+            string? searchTerm = Console.ReadLine();
+
+            foreach (var item in shoppingList)
+            {
+                if (item.ToUpper().Contains(searchTerm?.ToUpper() ?? string.Empty))
+                {
+                    Console.WriteLine($"- {item}");
+                }
+            }
+            ConsoleUtils.AwaitKeypress();
+            break;
+        default:
+            Console.WriteLine("Invalid choice");
+            break;
+    }
 }
 #endregion
