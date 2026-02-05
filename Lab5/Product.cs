@@ -4,6 +4,11 @@ namespace Lab5;
 
 public class Product
 {
+    //Lager enum for kategorier, Enum er en datatype som kan ha et sett med forhåndsdefinerte konstanter.
+    //Dette gir full statisk analyse i IDE, og en kan ikke skrive inn feil kategori ved et uhell.
+    //Enums gjør det også enkelt å sjekke om input verdier er gyldige.
+    //Enums er LETT min favoritt datatype
+    //https://www.w3schools.com/cs/cs_enums.php
     public enum Categories
     {
         GraphicsCard,
@@ -14,11 +19,17 @@ public class Product
         PowerSupply,
     }
 
-    private uint Id { get; init; } = (uint)Random.Shared.Next();
+    //genererer et tilfeldig ID for hvert produkt
+    //her hadde det vært lurt å bekrefte at ID er unik, men for enkelhets skyld hopper vi over det, siden kollisjoner med 64-bit er sjeldne
+    private ulong Id { get; init; } = (ulong)Random.Shared.Next(); 
     public string? Name { get; init; }
     public Categories Category { get; init; }
     public decimal Price { get; set; }
     
+    //Lager en statisk liste med produkter, slik at den er den samme for alle instanser av Product
+    //protected gir kun tilgang til denne listen fra klasser som arver fra Product. https://www.w3schools.com/cs/cs_access_modifiers.php
+    //bruker object initializer syntax for å initialisere produktene i listen. Da slipper vi og kjøre .add på hvert produkt
+    //https://www.geeksforgeeks.org/c-sharp/object-and-collection-initializer-in-c-sharp/
     protected static List<Product> Stock =
     [
         new Product() { Name = "NVIDIA GeForce RTX 5090", Category = GraphicsCard, Price = 44950.99m },
