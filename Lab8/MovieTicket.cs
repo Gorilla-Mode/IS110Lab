@@ -29,6 +29,6 @@ public class MovieTicket(
     {
         Console.WriteLine($"Movie: {MovieName}\nGenre: {_movieGenre}\nDirector: {_movieDirector}\nRuntime: {_runtimeMinutes} minutes\n" +
                           $"Age Restriction: {_ageRestriction}\nPrice: {_price.ToString("C", CultureInfo.CreateSpecificCulture("NO"))}" +
-                          $"\nShow Date: {_showDate:ddddd dd MMMM @ HH:mm}");
+                          $"\nShow Date: {_showDate:dddd dd MMMM @ HH:mm}");
     }
 }
