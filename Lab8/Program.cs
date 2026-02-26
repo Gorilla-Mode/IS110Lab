@@ -1,13 +1,34 @@
 ﻿using System.Globalization;
 using Lab8;
 
+/*
+ * Lab8:
+ * 
+ * Du skal lage et system for produkter/tjenester som kan beregne pris og skrive kvittering.
+ * Krav
+ * Lag interface IBetalbar:
+ * - double BeregnPris();
+ *
+ * Lag interface IKvittering:
+ * - void SkrivKvittering();
+ *
+ * Lag minst tre klasser:
+ * - Pizza
+ * - KinoBillett
+ * - Abonnement
+ *
+ * Alle klassene skal implementere både IBetalbar og IKvittering.
+ *
+ * Lag en liste List<IBetalbar> og beregn totalpris for alle elementene.
+ * Lag en liste List<IKvittering> og skriv ut kvittering for alle elementene.
+ */
 
-//Ekstrem lat måte å legge til objektene i begge lister. Bruker objekt typem som alle andre objekter arver ifra, dvs
+//Ekstremt lat måte å legge til objektene i begge lister. Bruker objekt typen som alle andre objekter arver ifra, dvs
 //at et hvilket som helst objekt kan legges til i listen. Gjøre dette KUN slik at jeg kan gjøre en loop og legge de til
 //i listene av interface type automatisk.
 //https://www.geeksforgeeks.org/c-sharp/c-sharp-object-class/
-IList<object> objects = new List<object>
-{
+IList<object> objects =
+[
     //Parametere kan settes eksplistt med navn, istendenfor rekkefølge. Kan være nytting for bedre lesbarehet når det er
     //mange parametere
     new Subscription(
@@ -18,7 +39,6 @@ IList<object> objects = new List<object>
         name: "Spotify",
         months: 12,
         monthlyRate: 99.99),
-    
     new MovieTicket(
         movieName: "Lord of the Rings: The Fellowship of the Ring",
         movieGenre: "Fantasy",
@@ -35,7 +55,6 @@ IList<object> objects = new List<object>
         ageRestriction: 18,
         price: 120.00,
         showDate: new DateTime(2026, 7, 1, 19, 30, 0)),
-    
     new Pizza(
         name: "Parma", 
         toppings:  "Mozzarella, Tomato, Parmigiano, Parma ham, Rocket, Balsamic",
@@ -51,7 +70,7 @@ IList<object> objects = new List<object>
         toppings: "Mozzarella, Tomato, Parmigiano, Parma ham, Rocket, Balsamic", 
         basePrice: 203.49,
         size: PizzaSize.Medium)
-};
+];
 
 //Definererer lister med interface typene
 IList<IPayable> payables = new List<IPayable>();
