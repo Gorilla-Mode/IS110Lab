@@ -7,7 +7,7 @@ namespace Lab8;
 //exception dersom en type ikke er definert, aka typesafe. Les mer om type safety her: https://www.c-sharpcorner.com/UploadFile/vikie4u/type-safety-in-net/ 
 
 //Structs er enkle "klasser" uten metoder, som kan sees på som en bruker definert type. Den største forskjellen er at structs
-//er value typer imotsetning til kasser som er referanse typer. Som regel er structs raskere dersom størrelsen er under ca 16-24 bytes,
+//er value typer imotsetning til kasser som er referanse typer. Som regel er structs raskere dersom størrelsen er under ca. 16-24 bytes,
 //er de større er det blir det raskere med en referanse type som klasse. Dette er fordi hele structen må kopieres hver gang den brukes,
 //mens en referanse type bare kopierer minneadressen (8 bytes) til objektet. Det er mange grunner til at det er forsatt raskere med
 //struct opp til 16-24 bytes selv om de er større en pekerentil objektet f.esk heap vs stack allokering, object headere, cache misses.
@@ -38,7 +38,7 @@ public readonly struct PizzaSize
     public static readonly PizzaSize Large = new(SizeName.Large,1.60f);
     
     //Eksplicit operator for å konvertere fra float til PizzaSize, kaster exception dersom verdien ikke er gyldig.
-    //Dette må gjøres fordi siden dette er ett struct, støttes ikke casting som en enum fra start. Så vi må definere type konvertrinen selv
+    //Dette må gjøres fordi siden dette er ett struct, støttes ikke casting som en enum fra start. Så vi må definere type konverteringen selv
     //Les mer her: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators
     public static explicit operator PizzaSize(float multiplier) => multiplier switch
     {
@@ -80,28 +80,35 @@ public readonly struct PizzaSize
     }
 }
 
+//Arver fra interface IPayable og IReceipt, da må metodene implementeres de kan også sendes ned i hieerarkiet med abstract
 public class Pizza : IPayable, IReceipt
 {
-    public string Name { get; }
-    private string _toppings;
-    private double _totalprice;
-    private PizzaSize _size;
+    //Setter alt til private og readonly, siden ingen utvendine skal bruke disse. Readonly kan eventuelt fjernes
+    //dersom en vil ha logikk for å kunne endre pris
+    private readonly string _name;
+    private readonly string _toppings;
+    private readonly double _totalPrice;
+    private readonly PizzaSize _size;
 
-    public Pizza(string name, string toppings, double baseprice, PizzaSize size)
+    public Pizza(string name, string toppings, double basePrice, PizzaSize size)
+    
     {
-        Name = name;
+        _name = name;
         _toppings = toppings;
         _size = size;
-        _totalprice = Math.Round((baseprice * _size.Multiplier), 2);
+        _totalPrice = Math.Round(basePrice * _size.Multiplier, 2); //runder av til 2 desimalerplasser
     }
+    
+    //Implementerer metode fra IPayable
     public double CalculatePrice()
     {
-        return _totalprice;
+        return _totalPrice;
     }
 
+    //Implementerer metode fra IReceipt
     public void PrintReceipt()
     {
-        Console.WriteLine($"Pizza: {Name}\nSize: {_size}\nToppings: {_toppings}\n" +
-                          $"Price: {_totalprice.ToString("C", CultureInfo.CreateSpecificCulture("NO"))}");
+        Console.WriteLine($"Pizza: {_name}\nSize: {_size}\nToppings: {_toppings}\n" +
+                          $"Price: {_totalPrice.ToString("C", CultureInfo.CreateSpecificCulture("NO"))}");
     }
 }
