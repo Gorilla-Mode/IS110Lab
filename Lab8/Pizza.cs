@@ -10,7 +10,7 @@ namespace Lab8;
 //er value typer imotsetning til kasser som er referanse typer. Som regel er structs raskere dersom størrelsen er under ca. 16-24 bytes,
 //er de større er det blir det raskere med en referanse type som klasse. Dette er fordi hele structen må kopieres hver gang den brukes,
 //mens en referanse type bare kopierer minneadressen (8 bytes) til objektet. Det er mange grunner til at det er forsatt raskere med
-//struct opp til 16-24 bytes selv om de er større en pekerentil objektet f.esk heap vs stack allokering, object headere, cache misses.
+//struct opp til 16-24 bytes selv om de er større en pekeren til objektet f.eks. dynamisk vs lineær allokering av minne, object headere, cache misses.
 //Dere har nok mer om dette i is-105
 //
 //Value typer: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types
@@ -40,6 +40,8 @@ public readonly struct PizzaSize
     //Eksplicit operator for å konvertere fra float til PizzaSize, kaster exception dersom verdien ikke er gyldig.
     //Dette må gjøres fordi siden dette er ett struct, støttes ikke casting som en enum fra start. Så vi må definere type konverteringen selv
     //Les mer her: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators
+    //Her bruker vi en switch expression, nesten likt som statement, men den må returnere noe. https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression
+    //Her sier vi dersom input er 1.25f returneres medium. Underscore (_) er samme som default i switch statment.
     public static explicit operator PizzaSize(float multiplier) => multiplier switch
     {
         1.0f => Small,
