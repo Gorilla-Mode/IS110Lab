@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using Xunit;
 
 namespace Lab10Calc.Tests;
@@ -10,11 +11,10 @@ public class CalculatorTest
     public void TestAddNumbers()
     {
         //Arrange
-        double expectedResult = 8;
-        double result;
+        const double expectedResult = 8;
 
         //Act
-        result = Calculator.AddNumbers(3, 5);
+        var result = Calculator.AddNumbers(3, 5);
 
         //Assert
         Assert.Equal(expectedResult, result);
@@ -24,11 +24,10 @@ public class CalculatorTest
     public void TestSubtractNumbers()
     {
         //Arrange
-        double expectedResult = 2;
-        double result;
+        const double expectedResult = 2;
         
         //Act
-        result = Calculator.SubtractNumbers(5, 3);
+        var result = Calculator.SubtractNumbers(5, 3);
         
         //Assert
         Assert.Equal(expectedResult, result);
@@ -38,14 +37,15 @@ public class CalculatorTest
     public void TestMultiplyNumbers()
     {
         //Arrange
-        double expectedResult = 10;
-        double expectedResultMultByZero = 0;
-        double expectedResultMultByNegative = -10;
+        //Sjekker noen flere muligheter her
+        const double expectedResult = 10;
+        const double expectedResultMultByZero = 0;
+        const double expectedResultMultByNegative = 10;
 
         //act
         var result = Calculator.MultiplyNumbers(2, 5);
         var resultMultByZero = Calculator.MultiplyNumbers(2, 0);
-        var resultMultByNegative = Calculator.MultiplyNumbers(2, -5);
+        var resultMultByNegative = Calculator.MultiplyNumbers(-2, -5);
            
 
         //assert
@@ -58,13 +58,18 @@ public class CalculatorTest
     public void TestDivideNumbers()
     {
         //Arrange
-        double expectedResult = 2;
+        const double expectedResult = 2;
         
         //act
         var result = Calculator.DivideNumbers(4, 2);
         
+        //for å sjekke at en exception blir kastet, må den kastes inne i Asserten, hvis ikke har du bare en exception i programmet
+        //definerer derfor en funsksjon slik at utføringen kan kjøres i asserten.
+        void ResultDivByZero() => Calculator.DivideNumbers(4, 0);
+
         //assert
         Assert.Equal(expectedResult, result);
+        Assert.Throws<DivideByZeroException>(ResultDivByZero);
     }
     
 }

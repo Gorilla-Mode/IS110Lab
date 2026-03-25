@@ -19,6 +19,11 @@ public static class Calculator
 
     public static double DivideNumbers(int tall1, int tall2)
     {
+        if (tall2 == 0)
+        {
+            throw new DivideByZeroException("Division by zero is undefined.");
+        }
+        
         return tall1 / (double)tall2;
     }
 }
